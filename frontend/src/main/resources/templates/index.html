@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Acesso ao portal')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main>
+    <section class="hero container" aria-labelledby="hero-title">
+        <div class="hero-copy">
+            <span class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> PORTAL JURIS HOME</span>
+            <h1 id="hero-title">Seu espaço jurídico começa <em>aqui.</em></h1>
+            <p class="hero-description">Acesse sua área do Juris Home com praticidade. Cada conta tem um perfil próprio e permissões definidas para clientes, advogados e administradores.</p>
+            <div class="hero-actions">
+                <a th:href="@{/login}" class="button">Acessar minha conta <span aria-hidden="true">→</span></a>
+                <a th:href="@{/cadastro}" class="text-link">Ainda não tenho acesso <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="trust-line"><span class="trust-icon" aria-hidden="true">✓</span> Senha protegida · Sessão individual · Acesso por perfil</div>
+        </div>
+
+        <aside class="portal-preview" aria-label="Prévia das áreas do portal Juris Home">
+            <div class="preview-head">
+                <div class="preview-brand"><span class="brand-mark" aria-hidden="true">JH</span><span><strong>Juris Home</strong><small>Portal de acesso</small></span></div>
+                <span class="secure-chip"><i aria-hidden="true"></i> Acesso protegido</span>
+            </div>
+            <div class="preview-title">
+                <small>UM PORTAL, TRÊS PERFIS</small>
+                <h2>Seu acesso leva ao espaço certo.</h2>
+                <p>As permissões acompanham o papel de cada pessoa.</p>
+            </div>
+            <p class="preview-section-label">Áreas do portal</p>
+            <div class="preview-row"><span class="preview-icon" aria-hidden="true">C</span><span><strong>Área do cliente</strong><small>Um espaço pessoal de acesso</small></span><span class="preview-arrow" aria-hidden="true">›</span></div>
+            <div class="preview-row"><span class="preview-icon" aria-hidden="true">A</span><span><strong>Área profissional</strong><small>Acesso para advogados</small></span><span class="preview-arrow" aria-hidden="true">›</span></div>
+            <div class="preview-row"><span class="preview-icon" aria-hidden="true">G</span><span><strong>Gestão de contas</strong><small>Administração de perfis e acessos</small></span><span class="preview-arrow" aria-hidden="true">›</span></div>
+            <div class="preview-foot"><span aria-hidden="true">✓</span> Autenticação e permissões gerenciadas pelo Spring Security.</div>
+        </aside>
+    </section>
+
+    <section class="feature-band" id="como-funciona" aria-labelledby="features-title">
+        <div class="container">
+            <div class="section-heading"><span class="eyebrow">SIMPLES PARA COMEÇAR</span><h2 id="features-title">Acesso organizado desde o primeiro passo.</h2></div>
+            <div class="feature-grid">
+                <article class="feature-card"><span class="feature-icon" aria-hidden="true">01</span><h3>Crie seu acesso</h3><p>Preencha seus dados e escolha uma senha. Novas contas começam com perfil de cliente.</p></article>
+                <article class="feature-card"><span class="feature-icon" aria-hidden="true">02</span><h3>Entre com segurança</h3><p>A senha é armazenada com hash BCrypt e a sessão é protegida contra reutilização do identificador.</p></article>
+                <article class="feature-card"><span class="feature-icon" aria-hidden="true">03</span><h3>Use sua área</h3><p>O sistema direciona cada perfil para as páginas autorizadas, com gestão reservada ao administrador.</p></article>
+            </div>
+        </div>
+    </section>
+    <section class="container closing-note">
+        <div><span class="eyebrow">JURIS HOME</span><h2>Entre para continuar. <br>Seu espaço está pronto.</h2></div>
+        <a th:href="@{/login}" class="button button-outline">Ir para o login <span aria-hidden="true">→</span></a>
+    </section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

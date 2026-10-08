@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Criar acesso')}"></head>
+<body class="auth-page">
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="auth-shell container">
+    <section class="auth-aside">
+        <span class="eyebrow">COMECE POR AQUI</span>
+        <h1>Crie seu acesso ao <em>Juris Home.</em></h1>
+        <p>Com uma conta, você poderá entrar na área do cliente. Use um e-mail válido e escolha uma senha que só você conheça.</p>
+        <ul class="auth-benefits">
+            <li><span class="benefit-check" aria-hidden="true">✓</span> Cadastro rápido com seus dados básicos</li>
+            <li><span class="benefit-check" aria-hidden="true">✓</span> Senha armazenada com hash seguro</li>
+            <li><span class="benefit-check" aria-hidden="true">✓</span> Perfil inicial de cliente</li>
+        </ul>
+    </section>
+    <section class="auth-card register-card" aria-labelledby="register-title">
+        <div class="auth-heading"><span class="eyebrow">NOVA CONTA</span><h2 id="register-title">Criar minha conta</h2><p>Preencha seus dados para continuar.</p></div>
+        <form th:action="@{/cadastro}" th:object="${form}" method="post" class="form-stack form-grid">
+            <div class="notice notice-error field-span" th:if="${#fields.hasGlobalErrors()}" role="alert"><p th:each="error : ${#fields.globalErrors()}" th:text="${error}"></p></div>
+            <div class="field"><label for="displayName">Nome completo</label><input id="displayName" th:field="*{displayName}" type="text" autocomplete="name" maxlength="80" placeholder="Como podemos chamar você?" required><small class="field-error" th:errors="*{displayName}"></small></div>
+            <div class="field"><label for="username">Nome de usuário</label><input id="username" th:field="*{username}" type="text" autocomplete="username" minlength="3" maxlength="32" placeholder="Escolha seu usuário" required><small class="field-error" th:errors="*{username}"></small></div>
+            <div class="field field-span"><label for="email">E-mail</label><input id="email" th:field="*{email}" type="email" autocomplete="email" maxlength="160" placeholder="voce@exemplo.com" required><small class="field-error" th:errors="*{email}"></small></div>
+            <div class="field"><label for="password">Senha <span class="field-hint">mínimo de 12 caracteres</span></label><input id="password" th:field="*{password}" type="password" autocomplete="new-password" minlength="12" maxlength="72" placeholder="Crie uma senha forte" required><small class="field-error" th:errors="*{password}"></small><small class="field-error" th:if="${#fields.hasErrors('passwordWithinBcryptLimit')}" th:errors="*{passwordWithinBcryptLimit}"></small></div>
+            <div class="field"><label for="confirmPassword">Confirme sua senha</label><input id="confirmPassword" th:field="*{confirmPassword}" type="password" autocomplete="new-password" placeholder="Digite a senha novamente" required><small class="field-error" th:errors="*{confirmPassword}"></small></div>
+            <p class="password-note field-span"><span aria-hidden="true">i</span> Não use uma senha que você já utiliza em outros serviços.</p>
+            <button type="submit" class="button button-full field-span">Criar acesso de cliente <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="auth-switch">Já tem uma conta? <a th:href="@{/login}">Entre por aqui</a></p>
+        <div class="form-footnote"><span aria-hidden="true">✓</span> Seu cadastro cria um perfil de cliente. Um administrador pode atualizar o perfil depois.</div>
+    </section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

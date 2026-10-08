@@ -1,0 +1,11 @@
+target/
+runtime/
+mongodata/
+logs/
+.idea/
+.vscode/
+*.iml
+.env
+.env.*
+!.env.example
+*.log

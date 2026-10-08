@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Área do cliente')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="container page-shell">
+    <span class="eyebrow">ÁREA DO CLIENTE</span>
+    <h1>Olá, <em th:text="${auth.username}">cliente</em>.</h1>
+    <p class="page-lead">Você entrou na área do cliente do Juris Home. Este espaço é a base para os recursos de atendimento definidos para o projeto.</p>
+    <section class="dashboard-banner" aria-label="Status do acesso">
+        <span class="feature-icon" aria-hidden="true">✓</span>
+        <div><h2>Acesso confirmado</h2><p>Seu perfil atual permite acessar esta área. As páginas protegidas são controladas pelo Spring Security.</p></div>
+    </section>
+    <div class="dashboard-grid">
+        <article class="dashboard-card"><span class="eyebrow">ESPAÇO DO CLIENTE</span><h2>Atendimento</h2><p>Use este módulo como ponto de extensão para as funções de atendimento que fizerem parte do escopo do PFC.</p><span class="tag">MÓDULO PREPARADO</span></article>
+        <article class="dashboard-card"><span class="eyebrow">PRÓXIMAS ETAPAS</span><h2>Evolução do portal</h2><p>Novas páginas podem ser adicionadas sem misturar a apresentação com as regras de autenticação e autorização.</p><span class="tag">PERFIL CLIENTE</span></article>
+    </div>
+    <a th:href="@{/}" class="text-link back-link">← Voltar ao início</a>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

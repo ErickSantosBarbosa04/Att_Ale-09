@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#192c39">
+    <title th:text="${title + ' · Juris Home'}">Juris Home</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <link rel="stylesheet" th:href="@{/css/themes/{theme}.css(theme=${ui.theme})}">
+</head>
+<body>
+<header class="site-header" th:fragment="header">
+    <a class="brand" th:href="@{/}" aria-label="Juris Home, início">
+        <span class="brand-mark" aria-hidden="true">JH</span>
+        <span class="brand-copy">
+            <span class="brand-name">Juris Home</span>
+            <span class="brand-caption">Seu espaço jurídico</span>
+        </span>
+    </a>
+    <nav class="main-nav" aria-label="Navegação principal">
+        <a th:if="${auth == null}" th:href="@{/#como-funciona}" class="nav-link">Como funciona</a>
+        <a th:if="${auth == null}" th:href="@{/login}" class="nav-link">Entrar</a>
+        <a th:if="${auth == null}" th:href="@{/cadastro}" class="button button-small">Criar acesso <span aria-hidden="true">↗</span></a>
+        <a th:if="${auth != null}" th:href="@{/painel}" class="nav-link">Meu espaço</a>
+        <a th:if="${auth != null and auth.roles.contains('ROLE_ADMIN')}" th:href="@{/admin/usuarios}" class="nav-link">Contas</a>
+        <div th:if="${auth != null}" class="nav-account">
+            <span class="avatar" aria-hidden="true" th:text="${#strings.toUpperCase(#strings.substring(auth.username, 0, 1))}">U</span>
+            <form th:action="@{/logout}" method="post" class="logout-form">
+                <button class="nav-link nav-button" type="submit">Sair da conta</button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+<footer class="site-footer" th:fragment="footer">
+    <span><span class="footer-brand">Juris Home</span> · Acesso ao seu espaço jurídico.</span>
+    <span>Privacidade e cuidado em cada acesso.</span>
+</footer>
+</body>
+</html>

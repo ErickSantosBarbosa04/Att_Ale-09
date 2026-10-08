@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Contas e permissões')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="container page-shell admin-shell">
+    <div class="admin-heading">
+        <div><span class="eyebrow">ADMINISTRAÇÃO DO PORTAL</span><h1>Contas e <em>permissões.</em></h1><p class="page-lead">Revise os perfis e o estado de acesso das contas do Juris Home.</p></div>
+        <div class="total-badge"><strong th:text="${users.totalElements}">0</strong><span>contas cadastradas</span></div>
+    </div>
+    <div class="notice notice-success" th:if="${notice}" th:text="${notice}" role="status"></div>
+    <div class="notice notice-error" th:if="${errorMessage}" th:text="${errorMessage}" role="alert"></div>
+    <div class="table-wrap">
+        <table class="user-table">
+            <thead><tr><th>Usuário</th><th>Perfil</th><th>Acesso</th><th>Ações</th></tr></thead>
+            <tbody>
+            <tr th:each="user : ${users.content}">
+                <td><strong th:text="${user.displayName}">Nome completo</strong><small th:text="${user.username + ' · ' + user.email}">usuário · e-mail</small></td>
+                <td><span class="role-tag" th:each="role : ${user.roles}" th:text="${role.label}">Cliente</span></td>
+                <td><span class="status-tag" th:classappend="${user.enabled} ? ' is-active' : ' is-disabled'" th:text="${user.enabled} ? 'Ativo' : 'Bloqueado'">Ativo</span></td>
+                <td>
+                    <div th:if="${user.username != auth.username}" class="action-stack">
+                        <form th:action="@{/admin/usuarios/{id}/perfil(id=${user.id})}" method="post" class="inline-form">
+                            <label class="visually-hidden" th:for="${'role-' + user.id}">Novo perfil para <span th:text="${user.username}">usuário</span></label>
+                            <select th:id="${'role-' + user.id}" name="role" aria-label="Selecione o perfil da conta">
+                                <option th:each="role : ${roles}" th:value="${role.name}" th:text="${role.label}" th:selected="${user.roles.contains(role)}"></option>
+                            </select>
+                            <button class="mini-button" type="submit">Salvar perfil</button>
+                        </form>
+                        <form th:action="@{/admin/usuarios/{id}/status(id=${user.id})}" method="post" class="inline-form">
+                            <input type="hidden" name="enabled" th:value="${!user.enabled}">
+                            <button class="mini-button mini-muted" type="submit" th:text="${user.enabled} ? 'Bloquear' : 'Reativar'"></button>
+                        </form>
+                        <form th:action="@{/admin/usuarios/{id}/excluir(id=${user.id})}" method="post" class="inline-form confirm-delete" data-confirm="Tem certeza de que deseja excluir esta conta? Esta ação não pode ser desfeita.">
+                            <button class="mini-button mini-danger" type="submit">Excluir conta</button>
+                        </form>
+                    </div>
+                    <span th:if="${user.username == auth.username}" class="self-note">Sua conta atual</span>
+                </td>
+            </tr>
+            <tr th:if="${users.empty}"><td colspan="4" class="empty-state">Ainda não há contas para exibir.</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <nav class="pagination" th:if="${users.totalPages > 1}" aria-label="Paginação de contas">
+        <a th:if="${users.hasPrevious()}" th:href="@{/admin/usuarios(pagina=${users.number - 1})}">← Página anterior</a>
+        <span th:text="${'Página ' + (users.number + 1) + ' de ' + users.totalPages}">Página 1 de 1</span>
+        <a th:if="${users.hasNext()}" th:href="@{/admin/usuarios(pagina=${users.number + 1})}">Próxima página →</a>
+    </nav>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<script th:src="@{/js/admin.js}" defer></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+:root {
+    --ink: #192c39;
+    --ink-soft: #50616d;
+    --muted: #74818a;
+    --paper: #f5f4f0;
+    --surface: #ffffff;
+    --accent: #c28a50;
+    --accent-dark: #8c5223;
+    --accent-hover: #713f19;
+    --accent-soft: #f7eee4;
+    --line: #e5e3dc;
+    --line-strong: #d3d4cf;
+    --success: #356b54;
+    --success-soft: #edf5ef;
+    --success-line: #d3e6d8;
+    --danger: #a03e3e;
+    --danger-soft: #fbefee;
+    --danger-line: #eed6d4;
+}

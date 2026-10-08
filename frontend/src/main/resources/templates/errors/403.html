@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Acesso restrito')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="container error-shell">
+    <span class="error-code">403</span>
+    <span class="eyebrow">ACESSO RESTRITO</span>
+    <h1>Seu perfil não permite abrir esta área.</h1>
+    <p>Volte ao seu espaço. Se você precisa desta permissão, peça ao administrador do Juris Home para revisar seu perfil.</p>
+    <a th:href="@{/painel}" class="button">Voltar para minha área <span aria-hidden="true">→</span></a>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

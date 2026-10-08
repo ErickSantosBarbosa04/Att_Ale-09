@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Entrar na conta')}"></head>
+<body class="auth-page">
+<header th:replace="~{fragments/layout :: header}"></header>
+<main class="auth-shell container">
+    <section class="auth-aside">
+        <span class="eyebrow">BEM-VINDO DE VOLTA</span>
+        <h1>Seu espaço no Juris Home, <em>a um acesso.</em></h1>
+        <p>Entre com seu usuário e sua senha para abrir a área correspondente ao seu perfil.</p>
+        <ul class="auth-benefits">
+            <li><span class="benefit-check" aria-hidden="true">✓</span> Acesso individual protegido por senha</li>
+            <li><span class="benefit-check" aria-hidden="true">✓</span> Permissões específicas para cada perfil</li>
+            <li><span class="benefit-check" aria-hidden="true">✓</span> Sessão encerrada quando você sair da conta</li>
+        </ul>
+    </section>
+    <section class="auth-card" aria-labelledby="login-title">
+        <div class="auth-heading"><span class="eyebrow">ACESSO AO PORTAL</span><h2 id="login-title">Entrar na minha conta</h2><p>Informe seus dados de acesso abaixo.</p></div>
+        <div class="notice notice-success" th:if="${param.cadastro}" role="status">Cadastro concluído. Agora, entre usando o usuário e a senha que você criou.</div>
+        <div class="notice notice-success" th:if="${param.logout}" role="status">Você saiu da sua conta. Sua sessão foi encerrada.</div>
+        <div class="notice notice-error" th:if="${param.erro}" role="alert">Não foi possível entrar. Confira seu usuário e sua senha e tente novamente.</div>
+        <form th:action="@{/login}" method="post" class="form-stack">
+            <div class="field"><label for="username">Usuário</label><input id="username" name="username" type="text" autocomplete="username" placeholder="Digite seu usuário" required autofocus></div>
+            <div class="field"><label for="password">Senha</label><input id="password" name="password" type="password" autocomplete="current-password" placeholder="Digite sua senha" required></div>
+            <button type="submit" class="button button-full">Entrar no Juris Home <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="auth-switch">Ainda não tem acesso? <a th:href="@{/cadastro}">Crie sua conta</a></p>
+        <div class="form-footnote"><span aria-hidden="true">✓</span> Sua senha é protegida com BCrypt. Nunca compartilhe seus dados de acesso.</div>
+    </section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>
