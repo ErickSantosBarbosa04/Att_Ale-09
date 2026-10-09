@@ -50,7 +50,7 @@ Com Java 21, Maven e MongoDB Community disponíveis no `PATH`, abra o PowerShell
 ./run-local.ps1
 ```
 
-O script inicia o MongoDB local, vinculado apenas a `127.0.0.1`, e configura a aplicação para usar o banco `juris_home_auth`. Depois, acesse [http://127.0.0.1:8080](http://127.0.0.1:8080).
+
 
 Se o projeto estiver com os binários presentes em `runtime/`, o script prioriza o Java 21, o Maven e o MongoDB incluídos nessa pasta. Em outra máquina, instale os requisitos e use a configuração do `PATH`.
 
